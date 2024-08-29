@@ -1,16 +1,31 @@
 import 'package:flutter/material.dart';
 
 class Story extends StatelessWidget {
-  const Story({super.key});
+  final String urlImg;
+  final String name;
+  const Story({
+    super.key,
+    required this.urlImg,
+    required this.name,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         CircleAvatar(
-          backgroundImage: AssetImage('assets/ic_avatar_1.jpg'),
+          radius: 35,
+          backgroundColor: const Color(0xFF9747FF),
+          child: CircleAvatar(
+            backgroundImage: AssetImage(urlImg),
+            radius: 32,
+          ),
         ),
-        Text('Nome'),
+        const SizedBox(height: 8),
+        Text(
+          name,
+          style: Theme.of(context).textTheme.labelSmall,
+        ),
       ],
     );
   }

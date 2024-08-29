@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:roamify/screens/home/components/post.dart';
 import 'package:roamify/screens/home/components/stories.dart';
 
 class HomePage extends StatelessWidget {
@@ -22,6 +23,10 @@ class HomePage extends StatelessWidget {
         child: Column(
           children: [
             Stories(),
+            Divider(
+              thickness: 2,
+            ),
+            Post(),
           ],
         ),
       ),

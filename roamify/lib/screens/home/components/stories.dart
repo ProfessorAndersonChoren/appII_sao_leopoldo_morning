@@ -6,14 +6,29 @@ class Stories extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Column(
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text('Stories'),
-        Row(
+        Text(
+          'Stories',
+          style: Theme.of(context).textTheme.labelLarge,
+        ),
+        const SizedBox(height: 28),
+        const Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Story(),
-            Story(),
-            Story(),
+            Story(
+              name: 'Guy Hawkins',
+              urlImg: 'assets/ic_avatar_1.jpg',
+            ),
+            Story(
+              name: 'Cameron Williamson',
+              urlImg: 'assets/ic_avatar_2.jpg',
+            ),
+            Story(
+              name: 'Robert Fox',
+              urlImg: 'assets/ic_avatar_3.jpg',
+            ),
           ],
         ),
       ],
