@@ -1,4 +1,5 @@
 import 'package:burguer_dos_sonhos/screens/home/components/payment_method.dart';
+import 'package:burguer_dos_sonhos/screens/home/components/quantity.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
@@ -10,7 +11,7 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Burguer dos sonhos'),
       ),
-      body: Column(
+      body: ListView(
         children: [
           Image.asset(
             'assets/ic_hamburger.jpg',
@@ -33,6 +34,8 @@ class HomePage extends StatelessWidget {
                 ),
                 const SizedBox(height: 20),
                 PaymentMethod(),
+                const SizedBox(height: 32),
+                Quantity(),
               ],
             ),
           ),
