@@ -6,17 +6,17 @@ class TasksPage extends StatelessWidget {
   TasksPage({super.key});
 
   final List<Task> _tasks = [
-    Task(
+    const Task(
       title: 'Ir ao mercado',
       category: 'Pessoal',
       hour: TimeOfDay(hour: 8, minute: 0),
     ),
-    Task(
+    const Task(
       title: 'Consulta dermato',
       category: 'Saúde',
       hour: TimeOfDay(hour: 13, minute: 0),
     ),
-    Task(
+    const Task(
       title: 'Buscar as crianças',
       category: 'Educação',
       hour: TimeOfDay(hour: 17, minute: 0),
@@ -35,7 +35,7 @@ class TasksPage extends StatelessWidget {
         child: const Icon(Icons.add),
       ),
       body: Padding(
-        padding: EdgeInsets.symmetric(
+        padding: const EdgeInsets.symmetric(
           vertical: 16,
           horizontal: 8,
         ),

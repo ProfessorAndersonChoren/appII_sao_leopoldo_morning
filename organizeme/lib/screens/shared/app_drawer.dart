@@ -8,7 +8,7 @@ class AppDrawer extends StatelessWidget {
     return Drawer(
       child: SafeArea(
         child: Padding(
-          padding: EdgeInsets.all(16),
+          padding: const EdgeInsets.all(16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -20,13 +20,17 @@ class AppDrawer extends StatelessWidget {
               TextButton.icon(
                 icon: const Icon(Icons.access_time),
                 label: const Text('Compromissos do dia'),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushReplacementNamed(context, '/tasks');
+                },
               ),
               const SizedBox(height: 16),
               TextButton.icon(
                 icon: const Icon(Icons.shopping_cart),
                 label: const Text('Lista de compras'),
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushReplacementNamed(context, '/shoplist');
+                },
               ),
             ],
           ),
