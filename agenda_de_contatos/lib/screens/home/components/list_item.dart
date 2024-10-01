@@ -1,7 +1,9 @@
 import 'package:agenda_de_contatos/model/contact.dart';
 import 'package:agenda_de_contatos/repository/contact_repository.dart';
+import 'package:agenda_de_contatos/store/contact_store.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:provider/provider.dart';
 import 'package:slideable/slideable.dart';
 
 class ListItem extends StatelessWidget {
@@ -13,6 +15,8 @@ class ListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final contactStore = Provider.of<ContactsStore>(context);
+    final repository = Provider.of<ContactRepository>(context);
     return Observer(builder: (_) {
       return Slideable(
         items: <ActionItems>[
@@ -22,11 +26,7 @@ class ListItem extends StatelessWidget {
               color: Colors.orange,
             ),
             onPress: () {
-              Navigator.pushNamed(
-                context,
-                '/edit',
-                arguments: contact,
-              );
+              Navigator.pushNamed(context, '/edit', arguments: contact);
             },
             backgroudColor: Colors.transparent,
           ),
@@ -36,7 +36,7 @@ class ListItem extends StatelessWidget {
               color: Colors.red,
             ),
             onPress: () {
-              ContactRepository.delete(contact.id!);
+              _showModal(context, contact, repository, contactStore);
             },
             backgroudColor: Colors.transparent,
           ),
@@ -51,6 +51,40 @@ class ListItem extends StatelessWidget {
         ),
       );
     });
+  }
+
+  void _showModal(
+    BuildContext context,
+    Contact contact,
+    ContactRepository repository,
+    ContactsStore contactStore,
+  ) {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: Text('Remover ${contact.name}?'),
+        content: const Text('Essa ação é irreversível!!!'),
+        actions: [
+          TextButton(
+            onPressed: () {
+              repository.delete(contact.id!);
+              contactStore.remove(contact.id!);
+              Navigator.pop(context);
+            },
+            child: const Text(
+              'Sim',
+              style: TextStyle(color: Colors.red),
+            ),
+          ),
+          TextButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            child: const Text('Não'),
+          ),
+        ],
+      ),
+    );
   }
 }
 
